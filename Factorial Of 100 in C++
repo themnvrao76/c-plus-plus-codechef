@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+int multipication(int k,int array[],int array_size);
+void fact(int num)
+{
+    int array[200],array_size=1;
+    array[0]=1;
+    
+    for(int i=2;i<=num;i++)
+    {
+        array_size=multipication(i,array,array_size);
+    }
+    for(int i=array_size-1;i>=0;i--)
+    {
+        cout<<array[i];
+    }
+    cout<<endl;
+}
+int multipication(int k,int array[],int array_size)
+{
+    int carry=0;
+    for(int i=0;i<array_size;i++)
+    {
+        int store=array[i]*k+carry;
+        array[i]=store%10;
+        carry=store/10;
+    }
+    while(carry)
+    {
+        array[array_size]=carry%10;
+        carry=carry/10;
+        array_size++;
+    }
+    return array_size;
+}   
+
+int main()
+{   int n,x;
+    cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        cin>>x;
+        fact(x);
+    }
+}
